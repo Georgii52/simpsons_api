@@ -1,6 +1,6 @@
 import Image from "next/image"
 import random_num from "../provider/number"
-export default function Cards ({data}) {
+export default function Cards ({ data, onSelect }) {
     const PHOTO_BASE_URL = 'https://cdn.thesimpsonsapi.com/500'
     return (
         <div className="
@@ -9,9 +9,9 @@ export default function Cards ({data}) {
         items-center justify-center
         gap-6
         ">
-            {data.length === 0 ? (<div>Loading</div>)
-            :(data.map((item) =>
-            <div key={item.id} className="
+            {data.map((item) =>
+            <div key={item.id} onClick={()=> onSelect(item.id)} className="
+            cursor-pointer
             group
             flex flex-col flex-wrap
             p-4 items-center justify-center
@@ -71,10 +71,10 @@ export default function Cards ({data}) {
                 group-hover:text-cyan-500/80
                 transition-all
                 ">
-                    &#10077;{item.phrases[random_num(item)]}&#10078;
+                    {item.phrases.length === 0 ? ('Nothing to say :('):(`"${item.phrases[random_num(item)]}"`)}
                 </p>
             </div>
-            ))}
+            )}
         </div>
     )
 }
