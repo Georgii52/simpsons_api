@@ -14,7 +14,7 @@ export default function Home() {
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
   const [selectedId, setSelectedId] = useState(null)
-  const [detailedData, setDetailedData] = useState([])
+  const selectedItem = data.find((el)=> el.id === selectedId)
 
   const fetchData = async () => {
     setIsCardsLoading (true)
@@ -31,6 +31,14 @@ export default function Home() {
   }
 
   useEffect(()=> {
+    if(selectedId !== null) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+  }, [selectedId])
+
+  useEffect(()=> {
     fetchData()
   }, [page])
 
@@ -38,9 +46,12 @@ export default function Home() {
     <main className="flex flex-col min-h-screen items-center justify-center bg-sky-100/80 font-sans dark:bg-black">
       <NavBar />
       <MainLoad />
-      {isCardsLoading ? (<CardsSkeleton />): (<Cards data={data} onSelect={setSelectedId}/>)}
-      {selectedId && (<Popup id={selectedId} onClose={()=>setSelectedId(null)}/>)}
+      {isCardsLoading ? (<CardsSkeleton />):
+      (<>
+      <Cards data={data} onSelect={setSelectedId}/>
       <Pagination page={page} totalPages={totalPages} setPage={setPage}/>
+      </>)}
+      {selectedId && (<Popup id={selectedId} onClose={()=>setSelectedId(null)}/>)}
     </main>
   );
 }

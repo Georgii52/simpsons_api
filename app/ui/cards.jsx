@@ -3,7 +3,7 @@ import random_num from "../provider/number"
 export default function Cards ({ data, onSelect }) {
     const PHOTO_BASE_URL = 'https://cdn.thesimpsonsapi.com/500'
     return (
-        <div className="
+        <div className=" animate-[fadeIn_.5s_ease]
         flex flex-row flex-wrap
         p-4 w-full
         items-center justify-center

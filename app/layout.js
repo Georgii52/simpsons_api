@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "The Simpsons API",
-  description: "Simple realisation of free Simpsons API",
+  description: "Learn more about your favourite cartoon!",
 };
 
 export default function RootLayout({ children }) {

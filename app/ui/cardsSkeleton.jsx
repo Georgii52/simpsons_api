@@ -1,6 +1,6 @@
 export default function CardsSkeleton () {
 return (
-        Array.from ({length: 5}).map((_,i) => (
+    Array.from ({length: 4}).map((_,i) => (
         <div key={i} className="
         flex flex-row flex-wrap
         py-2 px-4 w-full
